@@ -1,22 +1,16 @@
-#!/bin/sh
+xmodmap ~/.xmodmap &
+xbindkeys &
+google-chrome-stable &
+~/.config/i3/polybar.sh &
+compton --config ~/.config/compton.conf &
+setxkbmap us -variant colemak &
+xinput --set-prop 13 'libinput Accel Speed' -0.5 &
 
-xsetroot -cursor_name left_ptr 	# set cursor
-#xsetroot -grey      	        # set background
-#xmobar &			# start xmobar
-xbacklight -set 25		# lower screen brightness
+#from pywal
+# Add this to your .xinitrc or whatever file starts programs on startup.
+# -R restores the last colorscheme that was in use.
+# wal -R
+~/.config/wal/wallpaper.sh &
 
-ponymix set-balance 0		# set volume (25%, balanced)
-ponymix set-volume 25
 
-### Xresources ################################################################
-# Load Xresoures with xrdb, solarized theme
-# loading xresources in xrdb is not recommended
-# xrdb ~/.Xresources
-[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
-
-#wallpaper sh file & chrome 
-exec ~/Pictures/wallpaper.sh &
-exec google-chrome-stable &
-
-exec xmonad 			# start WM
-
+exec i3
