@@ -1,0 +1,32 @@
+# Imports
+
+snippet ipd "import pandas, numpy" b
+import pandas as pd
+import numpy as np
+endsnippet
+
+
+# Snippets
+
+snippet ifmain "ifmain" b
+if __name__ == __main__:
+    ${1:${VISUAL:main()}}
+endsnippet
+
+global !p
+def insert_top(name):
+    vim.command('normal gg')
+    snip.expand_anon(name)
+    snip.cursor.set(snip.line+1,0)
+endglobal
+
+post_jump "if snip.tabstop == 0: insert_top('from sklearn.model_selection import train_test_split\n')
+snippet tts "train_test_split" b
+X_train, X_${1:${VISUAL:test}}, y_train, y_$1 = train_test_split(
+    ${2:${VISUAL:X}},
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+endsnippet
