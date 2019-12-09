@@ -5,9 +5,17 @@
 ## VIM
 ===
 Plugins:
-- surround
+- ale
+- fugitive
+- jupyter-vim
 - nerdtree
-- syntastic (testing)
+- supertab
+- surround
+- ultisnips
+- vim-autoflake
+- vim-repeat
+- vim-surround
+- ycm
 
 
 ## Keyboard: HHKB with Hasu bluetooth mod
