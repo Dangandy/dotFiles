@@ -1,3 +1,11 @@
+# global stuff
+global !p
+def insert_top(name):
+    vim.command('normal gg')
+    snip.expand_anon(name)
+    snip.cursor.set(snip.line+1,0)
+endglobal
+
 # Imports
 
 snippet ipd "import pandas, numpy" b
@@ -8,17 +16,22 @@ endsnippet
 
 # Snippets
 
+snippet def "define fuction with docstring" b
+def ${1:function name}(${2:args}):
+    """
+    ($2)
+    ${3:Description}
+    """
+    ${4:pass}
+    
+endsnippet
+
+
 snippet ifmain "ifmain" b
 if __name__ == __main__:
     ${1:${VISUAL:main()}}
 endsnippet
 
-global !p
-def insert_top(name):
-    vim.command('normal gg')
-    snip.expand_anon(name)
-    snip.cursor.set(snip.line+1,0)
-endglobal
 
 post_jump "if snip.tabstop == 0: insert_top('from sklearn.model_selection import train_test_split\n')
 snippet tts "train_test_split" b

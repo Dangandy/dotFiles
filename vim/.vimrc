@@ -16,11 +16,19 @@ set expandtab
 
 " Basic Stuff  {{{
 set ttyfast
-set relativenumber
+set number relativenumber
 set encoding=utf-8
 set scrolloff=3   " cursor will always be 3 lines above the bottom
 set foldcolumn=1
 set mouse=a		    " Enable Mouse
+set title           "Show filename in titlebar of window
+" set cursorline
+set wildmenu
+set wildignorecase                  "Case-insensitive completions
+set wildmode=list:longest,full      "Show list of completions
+
+" Keycodes and maps timeout in 3/10 sec...
+set timeout timeoutlen=500 ttimeoutlen=500
 " }}}
 
 
@@ -41,8 +49,6 @@ set noswapfile
 " Column UI {{{
 set wrap 		      " Wrap lines
 set ruler
-set textwidth=80
-set colorcolumn=80
 " }}}
 
 " color scheme
@@ -55,9 +61,11 @@ set smartcase
 "}}}
 
 " More aesthetic
-set formatoptions=tcqrn1
+set formatoptions=tcqn1
+set textwidth=88
 set list
 set listchars=tab:▸\ ,eol:¬
+set cursorline
 
 " Leader key is space
 let mapleader = "\<space>"
@@ -70,8 +78,7 @@ nnoremap <leader>k :NERDTreeToggle<cr>
 
 " ALE {{{
 let g:ale_fixers = {
-    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \ 'python': ['black', 'reorder-python-imports']
+    \ 'python': ['remove_trailing_lines', 'trim_whitespace','black', 'reorder-python-imports']
     \ }
 let g:ale_fix_on_save = 1
 " }}}
@@ -103,7 +110,7 @@ let g:UltiSnipsSnippetDirectories= ["~/Desktop/dotFiles/vim/Ultisnips"]
 " }}}
 
 " Not sure what to name this yet
-inoremap jj <ESC>
+inoremap ii <ESC>
 nnoremap ; :
 
 " edit & source .vimrc
@@ -122,19 +129,6 @@ augroup filetype_html
 augroup END
 " }}}
 
-" JAVASCRIPT {{{
-augroup filetype_js
-    autocmd!
-    autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
-augroup END
-" }}}
-
-" PYTHON {{{
-augroup filetype_py
-    autocmd!
-augroup END
-" }}}
-
 " VIM {{{
 augroup filetype_vim
     autocmd!
@@ -150,7 +144,15 @@ iabbrev @@ mail@andydang.ca
 cabbrev help vert help
 iabbrev letf left
 iabbrev gihtub github
+iabbrev cvs csv
+abbrev *** **/*
 
 " brackets
 inoremap 9) ()<left>
 inoremap () ()<left>
+
+" highlight column
+" set colorcolumn=81
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%89v', 100)
+
