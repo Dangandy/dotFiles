@@ -16,22 +16,28 @@ set expandtab
 
 " Basic Stuff  {{{
 set ttyfast
-set number relativenumber
 set encoding=utf-8
 set scrolloff=3   " cursor will always be 3 lines above the bottom
-set foldcolumn=1
+" set foldcolumn=1
 set mouse=a		    " Enable Mouse
 set title           "Show filename in titlebar of window
 " set cursorline
 set wildmenu
 set wildignorecase                  "Case-insensitive completions
 set wildmode=list:longest,full      "Show list of completions
-
 " Keycodes and maps timeout in 3/10 sec...
 set timeout timeoutlen=500 ttimeoutlen=500
 " }}}
 
+" Better highlighting {{{
+augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set number relativenumber
+    autocmd WinLeave * set norelativenumber nonumber
+augroup END
+" }}}
 
+" On save action {{{
 " Return to last edit position when opening files (You want this!) {{{
 " 1st line is if file has lines in it
 " execute code in normal mode
@@ -45,6 +51,7 @@ autocmd BufReadPost *
 " }}}
 autocmd FocusLost * :silent! wall    " Save when losing focus
 set noswapfile
+" }}}
 
 " Column UI {{{
 set wrap 		      " Wrap lines
@@ -62,7 +69,6 @@ set smartcase
 
 " More aesthetic
 set formatoptions=tcqn1
-set textwidth=88
 set list
 set listchars=tab:▸\ ,eol:¬
 set cursorline
@@ -109,15 +115,18 @@ let g:UltiSnipsSnippetDirectories= ["~/Desktop/dotFiles/vim/Ultisnips"]
 " }}}
 " }}}
 
-" Not sure what to name this yet
+" remaps
 inoremap ii <ESC>
 nnoremap ; :
+inoremap 9) ()
+inoremap """ """<esc>o"""<esc>O
+nnoremap "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<cr>
 
-" edit & source .vimrc
+" edit & source .vimrc {{{
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>eu :UltiSnipsEdit<cr>
-
+" }}}
 
 " USE za to unwrap the codes!!
 " FILE SPECIFIC AUTOCMD {{{
@@ -136,23 +145,30 @@ augroup filetype_vim
 augroup END
 " }}}
 
+" Python {{{
+augroup filetype_python
+    autocmd!
+    autocmd BufWritePre *.py set textwidth=88
+    autocmd FileType python setlocal foldmethod=indent
+augroup END
+" }}}
 " }}}
 
-" ABBREVIATION
+" ABBREVIATION {{{
 iabbrev adn and
 iabbrev @@ mail@andydang.ca
 cabbrev help vert help
 iabbrev letf left
 iabbrev gihtub github
 iabbrev cvs csv
-abbrev *** **/*
+iabbrev funtion function
+cabbrev *** **/*
+iabbrev scv csv
+iabbrev retrun return
+iabbrev trian train
+" }}}
 
-" brackets
-inoremap 9) ()<left>
-inoremap () ()<left>
-
-" highlight column
-" set colorcolumn=81
+" highlight column when it passes 88 - black says 88 is better than 80
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%89v', 100)
 

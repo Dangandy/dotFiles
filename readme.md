@@ -1,9 +1,12 @@
 # Dotfiles
-===
 
+## Usage
+
+```bash
+./install.sh 
+```
 
 ## VIM
-===
 Plugins:
 - ale
 - fugitive
@@ -19,7 +22,6 @@ Plugins:
 
 
 ## Keyboard: HHKB with Hasu bluetooth mod
-===
 Key features:
 - <capslock> is replaced with <backspace> and <ctrl>
 - <space> is <fn> or <space>
