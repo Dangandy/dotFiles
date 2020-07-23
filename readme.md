@@ -1,27 +1,12 @@
-# Dotfiles
+# My .files
+---
 
-## Usage
+## General Stats:
+OS: Archlinux
+Windows Manager: Sway (Runs on Wayland, but breaks with my NVIDIA gfx card)
 
-```bash
-./install.sh 
-```
-
-## VIM
-Plugins:
-- ale
-- fugitive
-- jupyter-vim
-- nerdtree
-- supertab
-- surround
-- ultisnips
-- vim-autoflake
-- vim-repeat
-- vim-surround
-- ycm
+---
+## To Do:
+- install space prompt with npm (currently oh my zsh)
 
 
-## Keyboard: HHKB with Hasu bluetooth mod
-Key features:
-- <capslock> is replaced with <backspace> and <ctrl>
-- <space> is <fn> or <space>
